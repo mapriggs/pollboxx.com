@@ -2,34 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Community Survey</title>
+  <title>NONPROFIT-A</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Font Awesome (royalty-free icons) -->
+  <!-- Icons -->
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     rel="stylesheet"
   />
 
   <style>
+    :root {
+      --blue: #0b1c2d;
+      --gold: #d4af37;
+      --light: #f4f6f8;
+      --text: #1a1a1a;
+    }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                    Roboto, Helvetica, Arial, sans-serif;
-      background: #f4f6f8;
-      color: #1a1a1a;
+      background: var(--light);
+      color: var(--text);
     }
 
-    .page {
-      min-height: 100vh;
+    /* HEADER */
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 18px 40px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .social-icons a {
+      color: var(--gold);
+      margin-left: 18px;
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      opacity: 0.8;
+    }
+
+    /* MAIN CARD */
+    .page {
+      display: flex;
       justify-content: center;
-      padding: 60px 20px;
+      padding: 70px 20px;
     }
 
     .card {
-      background: #ffffff;
+      background: white;
       display: flex;
       gap: 50px;
       padding: 50px;
@@ -40,15 +73,15 @@
     }
 
     .logo-section {
-      flex: 0 0 300px;
+      flex: 0 0 500px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .logo-section img {
-      width: 300px;
-      height: 300px;
+      width: 500px;
+      height: 500px;
       object-fit: contain;
     }
 
@@ -59,7 +92,7 @@
     h1 {
       margin: 0 0 8px;
       font-size: 28px;
-      color: #0b1c2d;
+      color: var(--blue);
     }
 
     .subtitle {
@@ -81,12 +114,11 @@
       font-size: 15px;
       border-radius: 6px;
       border: 1px solid #ccc;
-      box-sizing: border-box;
     }
 
     textarea {
-      resize: vertical;
       min-height: 90px;
+      resize: vertical;
     }
 
     button {
@@ -97,8 +129,8 @@
       font-weight: 600;
       border: none;
       border-radius: 6px;
-      background: #0b1c2d;
-      color: #d4af37;
+      background: var(--blue);
+      color: var(--gold);
       cursor: pointer;
     }
 
@@ -106,10 +138,10 @@
       background: #132b45;
     }
 
-    /* ICON SECTION */
+    /* VALUES */
     .values {
-      background: #0b1c2d;
-      color: #ffffff;
+      background: var(--blue);
+      color: white;
       padding: 60px 20px;
       text-align: center;
     }
@@ -119,37 +151,59 @@
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 30px;
       max-width: 900px;
-      margin: 0 auto;
+      margin: auto;
     }
 
     .value-item i {
-      font-size: 48px;
-      color: #d4af37;
+      font-size: 46px;
+      color: var(--gold);
       margin-bottom: 12px;
     }
 
     .value-item p {
-      margin: 0;
       font-weight: 600;
-      font-size: 15px;
+      margin: 0;
     }
 
-    /* ABOUT SECTION */
-    .about {
-      background: #ffffff;
+    /* BENEFITS */
+    .benefits {
+      background: white;
       padding: 70px 20px;
+    }
+
+    .benefits-content {
+      max-width: 900px;
+      margin: auto;
       text-align: center;
+    }
+
+    .benefits h2 {
+      color: var(--blue);
+      margin-bottom: 25px;
+      font-size: 26px;
+    }
+
+    .benefits p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    /* ABOUT */
+    .about {
+      background: var(--light);
+      padding: 70px 20px;
     }
 
     .about-content {
       max-width: 800px;
-      margin: 0 auto;
+      margin: auto;
+      text-align: center;
     }
 
     .about h2 {
-      color: #0b1c2d;
+      color: var(--blue);
       margin-bottom: 20px;
-      font-size: 26px;
     }
 
     .about p {
@@ -158,15 +212,28 @@
       color: #444;
     }
 
+    /* FOOTER */
+    footer {
+      background: var(--blue);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    footer p {
+      margin: 8px 0;
+    }
+
     @media (max-width: 900px) {
       .card {
         flex-direction: column;
         align-items: center;
-      }
-
-      .form-section, .logo-section {
-        width: 100%;
-        max-width: 500px;
       }
 
       .logo-section img {
@@ -179,23 +246,32 @@
 
 <body>
 
-  <!-- TOP SECTION -->
+  <!-- HEADER -->
+  <header>
+    <div class="brand">NONPROFIT-A</div>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+    </div>
+  </header>
+
+  <!-- MAIN -->
   <div class="page">
     <div class="card">
 
       <div class="logo-section">
-        <!-- Royalty-free placeholder logo (Unsplash) -->
         <img
           src="https://images.unsplash.com/photo-1603988363607-e1e4a66962c6?w=600&q=80"
-          alt="Organization Logo"
+          alt="Logo"
         />
       </div>
 
       <div class="form-section">
         <h1>Community Survey</h1>
-        <p class="subtitle">Your voice helps shape meaningful impact</p>
+        <p class="subtitle">Your insights help us drive meaningful impact</p>
 
-        <form action="https://formspree.io/f/xnjdywqw" method="POST">
+        <form action="https://formspree.io/f/XXXXYYYY" method="POST">
           <label>Email address</label>
           <input type="email" name="email" required />
 
@@ -212,52 +288,9 @@
     </div>
   </div>
 
-  <!-- VALUES SECTION -->
+  <!-- VALUES -->
   <section class="values">
     <div class="values-grid">
-
-      <div class="value-item">
-        <i class="fas fa-handshake"></i>
-        <p>Collaboration</p>
-      </div>
-
-      <div class="value-item">
-        <i class="fas fa-people-group"></i>
-        <p>Teamwork</p>
-      </div>
-
-      <div class="value-item">
-        <i class="fas fa-scale-balanced"></i>
-        <p>Honesty</p>
-      </div>
-
-      <div class="value-item">
-        <i class="fas fa-heart"></i>
-        <p>Generosity</p>
-      </div>
-
-      <div class="value-item">
-        <i class="fas fa-bullseye"></i>
-        <p>Focus</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ABOUT SECTION -->
-  <section class="about">
-    <div class="about-content">
-      <h2>Our Commitment to Social Impact</h2>
-      <p>
-        We are an organization dedicated to creating positive, lasting change
-        in the communities we serve. By fostering collaboration, integrity,
-        and purpose-driven action, we work alongside individuals and partners
-        to support initiatives that promote equity, opportunity, and sustainable
-        growth. Every insight shared helps us better understand real needs and
-        amplify meaningful impact.
-      </p>
-    </div>
-  </section>
-
-</body>
-</html>
+      <div class="value-item"><i class="fas fa-handshake"></i><p>Collaboration</p></div>
+      <div class="value-item"><i class="fas fa-people-group"></i><p>Teamwork</p></div>
+      <div class="value-item"><i class="f
