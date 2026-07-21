@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Meridian — Strategic business solutions that drive growth, efficiency, and lasting impact for modern enterprises." />
+  <title>Meridian | Strategic Business Solutions</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#DAA520",
+            secondary: "#203864",
+            background: "#121212",
+            surface: "#1E1E1E",
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ========================================================================
+       Navigation
+       ======================================================================== -->
+  <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="#" class="navbar-brand" aria-label="Meridian home">
+        <span class="brand-icon" aria-hidden="true">M</span>
+        Meridian
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a href="#contact" class="btn btn-primary btn-nav nav-cta">Get Started</a>
+
+      <button
+        id="hamburger"
+        class="hamburger"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-overlay" class="mobile-menu-overlay" aria-hidden="true"></div>
+
+  <!-- Mobile menu panel -->
+  <aside id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation">
+    <ul class="mobile-nav-links">
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary w-full mt-6 text-center">Get Started</a>
+  </aside>
+
+  <main>
+    <!-- ====================================================================
+         Hero Section
+         ==================================================================== -->
+    <section id="hero" class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-bg-gradient"></div>
+        <div class="hero-grid"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Trusted by 500+ businesses worldwide
+        </div>
+
+        <h1 class="hero-title">
+          Build Your Business<br />
+          <span class="text-gradient">With Confidence</span>
+        </h1>
+
+        <p class="hero-description">
+          Meridian delivers strategic consulting, digital transformation, and
+          operational excellence — empowering your team to scale smarter and
+          achieve measurable results.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            Start Your Journey
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a href="#features" class="btn btn-secondary">
+            Explore Services
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-value">98%</div>
+            <div class="hero-stat-label">Client Satisfaction</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">15+</div>
+            <div class="hero-stat-label">Years Experience</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">200+</div>
+            <div class="hero-stat-label">Projects Delivered</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Features Section
+         ==================================================================== -->
+    <section id="features" class="features">
+      <div class="features-inner">
+        <header class="features-header reveal">
+          <span class="section-label">What We Offer</span>
+          <h2 class="section-heading">Solutions Built for Growth</h2>
+          <p class="section-subheading mt-4">
+            Comprehensive services designed to address your most critical
+            business challenges and unlock new opportunities.
+          </p>
+        </header>
+
+        <div class="features-grid">
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="feature-title">Strategic Consulting</h3>
+            <p class="feature-description">
+              Data-driven strategies tailored to your market, goals, and
+              competitive landscape — turning insight into actionable roadmaps.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3 class="feature-title">Digital Transformation</h3>
+            <p class="feature-description">
+              Modernize your operations with cutting-edge technology, seamless
+              integrations, and workflows that boost productivity at every level.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <i class="fas fa-users-gear"></i>
+            </div>
+            <h3 class="feature-title">Team Development</h3>
+            <p class="feature-description">
+              Build high-performing teams through leadership coaching, skills
+              training, and culture programs that retain top talent.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <i class="fas fa-shield-halved"></i>
+            </div>
+            <h3 class="feature-title">Risk Management</h3>
+            <p class="feature-description">
+              Proactively identify and mitigate business risks with robust
+              compliance frameworks and enterprise-grade security practices.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3 class="feature-title">Performance Analytics</h3>
+            <p class="feature-description">
+              Real-time dashboards and KPI tracking that give you clear visibility
+              into performance and the metrics that matter most.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3 class="feature-title">Partnership Programs</h3>
+            <p class="feature-description">
+              Long-term partnerships with dedicated account managers, priority
+              support, and flexible engagement models that grow with you.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         About / CTA Banner
+         ==================================================================== -->
+    <section id="about" class="cta-banner">
+      <div class="cta-banner-inner reveal">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>
+          Join hundreds of forward-thinking companies that trust Meridian to
+          deliver results. Schedule a free consultation and discover what's possible.
+        </p>
+        <a href="#contact" class="btn btn-primary">
+          Book a Free Consultation
+          <i class="fas fa-calendar-check" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Contact Section
+         ==================================================================== -->
+    <section id="contact" class="contact">
+      <div class="contact-inner">
+        <div class="contact-info reveal">
+          <span class="section-label">Get In Touch</span>
+          <h2>Let's Start a Conversation</h2>
+          <p>
+            Have a project in mind or questions about our services? Fill out the
+            form and our team will respond within one business day.
+          </p>
+
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="contact-detail-icon" aria-hidden="true">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-detail-text">
+                <strong>Email</strong>
+                <span>hello@meridian.co</span>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon" aria-hidden="true">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-detail-text">
+                <strong>Phone</strong>
+                <span>+1 (555) 123-4567</span>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon" aria-hidden="true">
+                <i class="fas fa-location-dot"></i>
+              </div>
+              <div class="contact-detail-text">
+                <strong>Office</strong>
+                <span>1200 Business Park Dr, Suite 400<br />San Francisco, CA 94107</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper reveal">
+          <form
+            id="contact-form"
+            action="https://formspree.io/f/xnjdywqw"
+            method="POST"
+            novalidate
+          >
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="name">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="John Smith"
+                  autocomplete="name"
+                  required
+                />
+                <span id="name-error" class="form-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="john@company.com"
+                  autocomplete="email"
+                  required
+                />
+                <span id="email-error" class="form-error" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="subject">Subject</label>
+              <select id="subject" name="subject" class="form-select" required>
+                <option value="">Select a topic</option>
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Strategic Consulting">Strategic Consulting</option>
+                <option value="Digital Transformation">Digital Transformation</option>
+                <option value="Partnership">Partnership Opportunity</option>
+                <option value="Support">Support</option>
+              </select>
+              <span id="subject-error" class="form-error" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-textarea"
+                placeholder="Tell us about your project or question..."
+                required
+              ></textarea>
+              <span id="message-error" class="form-error" role="alert"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit">
+              Send Message
+              <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            </button>
+
+            <div id="form-message" class="form-message"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       Footer
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="navbar-brand">
+            <span class="brand-icon" aria-hidden="true">M</span>
+            Meridian
+          </a>
+          <p>
+            Empowering businesses with strategic solutions, innovative technology,
+            and dedicated partnership since 2010.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Services</h3>
+          <ul class="footer-links">
+            <li><a href="#features">Consulting</a></li>
+            <li><a href="#features">Digital Solutions</a></li>
+            <li><a href="#features">Analytics</a></li>
+            <li><a href="#features">Partnerships</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Meridian. All rights reserved.</p>
+        <p>
+          <a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="main.js"></script>
+</body>
+</html>
