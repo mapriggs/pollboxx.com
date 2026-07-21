@@ -142,17 +142,12 @@ a {
   color: var(--color-primary);
 }
 
-.brand-icon {
-  width: 2.25rem;
+.brand-logo {
   height: 2.25rem;
-  background: linear-gradient(135deg, var(--color-primary), #B8860B);
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.875rem;
-  color: var(--color-background);
+  width: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 0.375rem;
 }
 
 .nav-links {
