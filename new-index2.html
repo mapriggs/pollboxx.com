@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Join the Pollboxx Founding Members Circle — vote, debate, and shape the narrative. Get early access to the social polling app built for Gen Z and Millennials." />
+  <title>Pollboxx | Founding Members Circle — Early Access</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#203864",
+            secondary: "#DAA520",
+            background: "#FFFFFF",
+            surface: "#F5F7FA",
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="styles-index2.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header" class="header">
+    <div class="container header-inner">
+      <a href="#" class="brand" aria-label="Pollboxx home">
+        <img src="PB_v1.png" alt="Pollboxx logo" class="brand-logo" />
+        Pollboxx
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#perks">Perks</a></li>
+          <li><a href="#screenshots">Screenshots</a></li>
+        </ul>
+      </nav>
+
+      <a href="#signup" class="btn btn-glow nav-cta">Get Early Access</a>
+
+      <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#perks">Perks</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="#signup">Get Early Access</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="hero">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <div class="hero-badge">
+          🔥 Pre-Launch &bull; Founding Member Access
+        </div>
+
+        <h1 class="display-xl">
+          Vote. Debate. <span class="text-gradient">Decide.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Your opinions, unfiltered. Pollboxx is the social polling app where real voices shape the narrative — not algorithms.
+          Join the Founding Members Circle now and lock in early access before we hit 1,000 spots.
+        </p>
+
+        <form id="hero-form" class="hero-capture" novalidate>
+          <input
+            type="email"
+            id="hero-email"
+            name="email"
+            placeholder="Enter your email"
+            autocomplete="email"
+            aria-label="Email address for early access"
+            required
+          />
+          <button type="submit" class="btn btn-glow">Get Early Access</button>
+        </form>
+
+        <div class="progress-meter">
+          <div class="progress-label">
+            <span>Founding Spots Claimed</span>
+            <span><strong id="spots-count">753</strong> / 1,000</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section id="screenshots" class="screenshots">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-label">App Preview</span>
+          <h2 class="display-lg">See It In Action</h2>
+          <p>Swipe through the core experience — built for speed, clarity, and real conversation.</p>
+        </header>
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carousel-track" role="region" aria-label="App screenshot carousel">
+          <!-- Frame 1: Live Poll -->
+          <div class="phone-mockup reveal">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="mock-header">Cast Your Vote</div>
+                <div class="mock-body">
+                  <p style="font-size:0.8125rem;font-weight:700;color:var(--color-primary);margin:0;">
+                    Is AI art real art?
+                  </p>
+                  <div class="mock-poll-option selected">
+                    <span>Yes — creativity is creativity</span>
+                    <span style="color:var(--color-secondary);font-weight:700;">62%</span>
+                  </div>
+                  <div class="mock-bar"><div class="mock-bar-fill" style="width:62%"></div></div>
+                  <div class="mock-poll-option">
+                    <span>No — it lacks human intent</span>
+                    <span style="font-weight:700;">38%</span>
+                  </div>
+                  <div class="mock-bar"><div class="mock-bar-fill" style="width:38%"></div></div>
+                  <div style="margin-top:auto;padding:0.75rem;background:var(--color-primary);color:#FFF;border-radius:var(--radius-md);text-align:center;font-size:0.75rem;font-weight:600;">
+                    Submit Vote →
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="phone-caption">Live Poll &amp; Voting</p>
+          </div>
+
+          <!-- Frame 2: Analytics -->
+          <div class="phone-mockup reveal">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="mock-header">See Where You Stand</div>
+                <div class="mock-body">
+                  <div class="mock-stat-row">
+                    <div class="mock-stat"><b>12.4K</b>Votes</div>
+                    <div class="mock-stat"><b>847</b>Debating</div>
+                    <div class="mock-stat"><b>🔥</b>Trending</div>
+                  </div>
+                  <div style="padding:0.75rem;background:#FFF;border-radius:var(--radius-sm);">
+                    <p style="font-size:0.6875rem;color:var(--color-text-muted);margin:0 0 0.5rem;">Your demographic</p>
+                    <div class="mock-bar"><div class="mock-bar-fill" style="width:74%"></div></div>
+                    <p style="font-size:0.625rem;margin:0.375rem 0 0;color:var(--color-primary);font-weight:600;">74% agree with you (18–34)</p>
+                  </div>
+                  <div style="padding:0.75rem;background:#FFF;border-radius:var(--radius-sm);">
+                    <p style="font-size:0.6875rem;color:var(--color-text-muted);margin:0 0 0.5rem;">Global split</p>
+                    <div style="display:flex;height:0.5rem;border-radius:var(--radius-pill);overflow:hidden;">
+                      <div style="width:58%;background:var(--color-primary);"></div>
+                      <div style="flex:1;background:var(--color-secondary);"></div>
+                    </div>
+                  </div>
+                  <div style="margin-top:auto;font-size:0.6875rem;color:var(--color-text-muted);text-align:center;">
+                    Updated in real-time
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="phone-caption">Real-Time Trend Analytics</p>
+          </div>
+
+          <!-- Frame 3: Debate -->
+          <div class="phone-mockup reveal">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="mock-header">Join the Discussion</div>
+                <div class="mock-body">
+                  <div class="mock-comment">
+                    <strong>@alex_k</strong> The tool doesn't matter — intent does. Change my mind. 👇
+                  </div>
+                  <div class="mock-comment">
+                    <strong>@mira.j</strong> Disagree. Without struggle there's no soul in the work.
+                  </div>
+                  <div class="mock-comment">
+                    <strong>@devon_r</strong> Both can coexist. Gatekeeping helps nobody.
+                  </div>
+                  <div style="margin-top:auto;display:flex;gap:0.5rem;">
+                    <div style="flex:1;padding:0.625rem;background:#FFF;border:1px solid var(--color-border);border-radius:var(--radius-pill);font-size:0.6875rem;color:var(--color-text-muted);">
+                      Add your take...
+                    </div>
+                    <div style="width:2rem;height:2rem;background:var(--color-secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;">→</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="phone-caption">Social Comment &amp; Debate</p>
+          </div>
+        </div>
+
+        <div class="carousel-nav" id="carousel-dots" aria-label="Carousel navigation"></div>
+      </div>
+    </section>
+
+    <!-- Features anchor (scroll target from nav) -->
+    <section id="features" class="perks" style="padding-top:3rem;">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-label">Why Pollboxx</span>
+          <h2 class="display-lg">Shape the Narrative</h2>
+          <p>No echo chambers. No algorithmic manipulation. Just real people, real opinions, real impact.</p>
+        </header>
+      </div>
+    </section>
+
+    <!-- Perks -->
+    <section id="perks" class="perks" style="padding-top:0;">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-label">Exclusive Access</span>
+          <h2 class="display-lg">Why Join the Founding Circle?</h2>
+          <p>Lock in perks that disappear once we launch publicly.</p>
+        </header>
+
+        <div class="perks-grid">
+          <article class="perk-card reveal">
+            <span class="perk-icon" aria-hidden="true">🌟</span>
+            <h3>Founding Badge</h3>
+            <p>A permanent, exclusive profile badge that marks you as an original — visible to everyone on launch day.</p>
+          </article>
+
+          <article class="perk-card reveal">
+            <span class="perk-icon" aria-hidden="true">🚀</span>
+            <h3>Feature Input</h3>
+            <p>Vote directly on our product roadmap. Your voice decides which features ship first.</p>
+          </article>
+
+          <article class="perk-card reveal">
+            <span class="perk-icon" aria-hidden="true">⚡</span>
+            <h3>Priority Invite</h3>
+            <p>First in line when iOS and Android builds drop. No waitlist limbo — you're in.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sign-Up -->
+    <section id="signup" class="signup">
+      <div class="container">
+        <div class="signup-card reveal">
+          <h2 class="display-lg" style="font-size:clamp(1.75rem,4vw,2.25rem);">Claim Your Spot in the Circle</h2>
+          <p class="subtitle">753 founding spots left. Don't miss your chance.</p>
+
+          <form id="signup-form" action="https://formspree.io/f/xnjdywqw" method="POST" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="fullname">Full Name</label>
+              <input type="text" id="fullname" name="name" class="form-input" placeholder="Your full name" autocomplete="name" required />
+              <span id="fullname-error" class="form-error" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signup-email">Email Address</label>
+              <input type="email" id="signup-email" name="email" class="form-input" placeholder="you@email.com" autocomplete="email" required />
+              <span id="signup-email-error" class="form-error" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <span class="form-label">Platform Preference</span>
+              <div class="platform-control">
+                <div class="platform-option">
+                  <input type="radio" id="platform-ios" name="platform" value="iOS (TestFlight)" required />
+                  <label for="platform-ios">
+                    <i class="fab fa-apple" aria-hidden="true"></i>
+                    iOS
+                    <span>TestFlight</span>
+                  </label>
+                </div>
+                <div class="platform-option">
+                  <input type="radio" id="platform-android" name="platform" value="Android (Play Store)" />
+                  <label for="platform-android">
+                    <i class="fab fa-android" aria-hidden="true"></i>
+                    Android
+                    <span>Play Store</span>
+                  </label>
+                </div>
+              </div>
+              <span id="platform-error" class="form-error" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <span class="form-label">Topics You Care About</span>
+              <div class="topic-tags" id="topic-tags">
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-pop" name="topics" value="Pop Culture" />
+                  <label for="topic-pop">Pop Culture</label>
+                </div>
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-tech" name="topics" value="Tech" />
+                  <label for="topic-tech">Tech</label>
+                </div>
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-gaming" name="topics" value="Gaming" />
+                  <label for="topic-gaming">Gaming</label>
+                </div>
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-politics" name="topics" value="Politics" />
+                  <label for="topic-politics">Politics</label>
+                </div>
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-sports" name="topics" value="Sports" />
+                  <label for="topic-sports">Sports</label>
+                </div>
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-lifestyle" name="topics" value="Lifestyle" />
+                  <label for="topic-lifestyle">Lifestyle</label>
+                </div>
+              </div>
+              <span id="topics-error" class="form-error" role="alert"></span>
+            </div>
+
+            <button type="submit" class="btn btn-glow form-submit" id="signup-submit">
+              Reserve My Access →
+            </button>
+
+            <p class="trust-signal">Zero spam. Unsubscribe anytime. We respect your inbox.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-social">
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+
+      <p class="footer-copy">&copy; 2026 Pollboxx. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <div class="modal-icon" aria-hidden="true">🎉</div>
+      <h3 id="modal-title">You're In the Circle!</h3>
+      <p>Welcome, Founding Member. We'll hit your inbox with early access details before anyone else. Now spread the word — the narrative needs your people.</p>
+      <div class="modal-share">
+        <a href="#" aria-label="Share on X" id="share-x"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="Share on TikTok" id="share-tiktok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Share on Instagram" id="share-instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <button class="btn btn-glow" id="modal-close">Got It →</button>
+    </div>
+  </div>
+
+  <script src="new-index2.js"></script>
+</body>
+</html>
