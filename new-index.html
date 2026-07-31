@@ -52,11 +52,12 @@
       <ul class="nav-links">
         <li><a href="#hero" class="active">Home</a></li>
         <li><a href="#features">Features</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#signup">Sign Up</a></li>
       </ul>
 
-      <a href="#contact" class="btn btn-primary btn-nav nav-cta">Get Started</a>
+      <a href="#signup" class="btn btn-primary btn-nav nav-cta">Get Early Access</a>
 
       <button
         id="hamburger"
@@ -80,10 +81,11 @@
     <ul class="mobile-nav-links">
       <li><a href="#hero" class="active">Home</a></li>
       <li><a href="#features">Features</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#signup">Sign Up</a></li>
     </ul>
-    <a href="#contact" class="btn btn-primary w-full mt-6 text-center">Get Started</a>
+    <a href="#signup" class="btn btn-primary w-full mt-6 text-center">Get Early Access</a>
   </aside>
 
   <main>
@@ -98,43 +100,42 @@
 
       <div class="hero-content">
         <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          Trusted by 500+ pioneering members and growing
+          🔥 Pre-Launch &bull; Founding Member Access
         </div>
 
         <h1 class="hero-title">
-          Where everyone gets a voice<br />
-          <span class="text-gradient">Amidst the noise</span>
+          Vote. Debate. <span class="text-gradient">Decide.</span>
         </h1>
 
         <p class="hero-description">
-          Pollboxx is a massively scaled public pulse platform
-          designed to restore focus, clarity and trust and disrupt this 
-          era of algorithmic polarization and digital toxicity. 
+          Your opinions, unfiltered. Pollboxx is the social polling app where real voices shape the narrative — not algorithms.
+          Join the Founding Members Circle now and lock in early access before we hit 1,000 spots.
         </p>
 
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">
-            Join Our Journey
-            <i class="fas fa-arrow-right" aria-hidden="true"></i>
-          </a>
-          <a href="#features" class="btn btn-secondary">
-            Explore Features
-          </a>
-        </div>
+        <form id="hero-form" class="hero-capture" novalidate>
+          <div class="hero-capture-field">
+            <input
+              type="email"
+              id="hero-email"
+              name="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              aria-label="Email address for early access"
+              aria-describedby="hero-email-error"
+              required
+            />
+            <span id="hero-email-error" class="hero-form-error" role="alert"></span>
+          </div>
+          <button type="submit" class="btn btn-primary">Get Early Access</button>
+        </form>
 
-        <div class="hero-stats">
-          <div>
-            <div class="hero-stat-value">98%</div>
-            <div class="hero-stat-label">Client Satisfaction</div>
+        <div class="progress-meter">
+          <div class="progress-label">
+            <span>Founding Spots Claimed</span>
+            <span><strong id="spots-count">753</strong> / 1,000</span>
           </div>
-          <div>
-            <div class="hero-stat-value">15+</div>
-            <div class="hero-stat-label">Years Experience</div>
-          </div>
-          <div>
-            <div class="hero-stat-value">200+</div>
-            <div class="hero-stat-label">Projects Delivered</div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
           </div>
         </div>
       </div>
@@ -225,6 +226,72 @@
     </section>
 
     <!-- ====================================================================
+         See It In Action / Screenshots
+         ==================================================================== -->
+    <section id="screenshots" class="screenshots">
+      <div class="features-inner">
+        <header class="features-header reveal">
+          <span class="section-label">App Preview</span>
+          <h2 class="section-heading">See It In Action</h2>
+          <p class="section-subheading mt-4">
+            Swipe through the core experience — built for speed, clarity, and real conversation.
+          </p>
+        </header>
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carousel-track" role="region" aria-label="App screenshot carousel">
+          <div class="screenshot-slide reveal">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <img
+                  src="screenshots/cast-your-vote.png"
+                  alt="Pollboxx live poll and voting screen"
+                  class="screenshot-image"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <p class="phone-caption">Live Poll &amp; Voting</p>
+          </div>
+
+          <div class="screenshot-slide reveal">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <img
+                  src="screenshots/see-where-you-stand.png"
+                  alt="Pollboxx real-time trend analytics screen"
+                  class="screenshot-image"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <p class="phone-caption">Real-Time Trend Analytics</p>
+          </div>
+
+          <div class="screenshot-slide reveal">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <img
+                  src="screenshots/join-the-discussion.png"
+                  alt="Pollboxx social comment and debate thread"
+                  class="screenshot-image"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <p class="phone-caption">Social Comment &amp; Debate</p>
+          </div>
+        </div>
+
+        <div class="carousel-nav" id="carousel-dots" aria-label="Carousel navigation"></div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
          About / CTA Banner
          ==================================================================== -->
     <section id="about" class="cta-banner">
@@ -234,7 +301,7 @@
           Join hundreds of forward-thinking companies that trust Meridian to
           deliver results. Schedule a free consultation and discover what's possible.
         </p>
-        <a href="#contact" class="btn btn-primary">
+        <a href="#signup" class="btn btn-primary">
           Book a Free Consultation
           <i class="fas fa-calendar-check" aria-hidden="true"></i>
         </a>
@@ -242,119 +309,86 @@
     </section>
 
     <!-- ====================================================================
-         Contact Section
+         Founding Member Sign-Up
          ==================================================================== -->
-    <section id="contact" class="contact">
-      <div class="contact-inner">
-        <div class="contact-info reveal">
-          <span class="section-label">Get In Touch</span>
-          <h2>Let's Start a Conversation</h2>
-          <p>
-            Have a project in mind or questions about our services? Fill out the
-            form and our team will respond within one business day.
-          </p>
+    <section id="signup" class="signup">
+      <div class="features-inner">
+        <div class="signup-card reveal">
+          <h2 class="section-heading">Claim Your Spot in the Circle</h2>
+          <p class="signup-subtitle">Only 247 founding spots left. Don't miss your chance.</p>
 
-          <div class="contact-details">
-            <div class="contact-detail">
-              <div class="contact-detail-icon" aria-hidden="true">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <div class="contact-detail-text">
-                <strong>Email</strong>
-                <span>hello@meridian.co</span>
-              </div>
-            </div>
-
-            <div class="contact-detail">
-              <div class="contact-detail-icon" aria-hidden="true">
-                <i class="fas fa-phone"></i>
-              </div>
-              <div class="contact-detail-text">
-                <strong>Phone</strong>
-                <span>+1 (555) 123-4567</span>
-              </div>
-            </div>
-
-            <div class="contact-detail">
-              <div class="contact-detail-icon" aria-hidden="true">
-                <i class="fas fa-location-dot"></i>
-              </div>
-              <div class="contact-detail-text">
-                <strong>Office</strong>
-                <span>1200 Business Park Dr, Suite 400<br />San Francisco, CA 94107</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-form-wrapper reveal">
-          <form
-            id="contact-form"
-            action="https://formspree.io/f/xnjdywqw"
-            method="POST"
-            novalidate
-          >
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="name">Full Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  class="form-input"
-                  placeholder="John Smith"
-                  autocomplete="name"
-                  required
-                />
-                <span id="name-error" class="form-error" role="alert"></span>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="email">Email Address</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="form-input"
-                  placeholder="john@company.com"
-                  autocomplete="email"
-                  required
-                />
-                <span id="email-error" class="form-error" role="alert"></span>
-              </div>
+          <form id="signup-form" action="https://formspree.io/f/xnjdywqw" method="POST" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="fullname">Full Name</label>
+              <input type="text" id="fullname" name="name" class="form-input" placeholder="Your full name" autocomplete="name" required />
+              <span id="fullname-error" class="form-error" role="alert"></span>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="subject">Subject</label>
-              <select id="subject" name="subject" class="form-select" required>
-                <option value="">Select a topic</option>
-                <option value="General Inquiry">General Inquiry</option>
-                <option value="Strategic Consulting">Strategic Consulting</option>
-                <option value="Digital Transformation">Digital Transformation</option>
-                <option value="Partnership">Partnership Opportunity</option>
-                <option value="Support">Support</option>
-              </select>
-              <span id="subject-error" class="form-error" role="alert"></span>
+              <label class="form-label" for="signup-email">Email Address</label>
+              <input type="email" id="signup-email" name="email" class="form-input" placeholder="you@email.com" autocomplete="email" required />
+              <span id="signup-email-error" class="form-error" role="alert"></span>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                class="form-textarea"
-                placeholder="Tell us about your project or question..."
-                required
-              ></textarea>
-              <span id="message-error" class="form-error" role="alert"></span>
+              <span class="form-label">Platform Preference</span>
+              <div class="platform-control">
+                <div class="platform-option">
+                  <input type="radio" id="platform-ios" name="platform" value="iOS (TestFlight)" required />
+                  <label for="platform-ios">
+                    <i class="fab fa-apple" aria-hidden="true"></i>
+                    iOS
+                    <span>TestFlight</span>
+                  </label>
+                </div>
+                <div class="platform-option">
+                  <input type="radio" id="platform-android" name="platform" value="Android (Play Store)" />
+                  <label for="platform-android">
+                    <i class="fab fa-android" aria-hidden="true"></i>
+                    Android
+                    <span>Play Store</span>
+                  </label>
+                </div>
+              </div>
+              <span id="platform-error" class="form-error" role="alert"></span>
             </div>
 
-            <button type="submit" class="btn btn-primary form-submit">
-              Send Message
-              <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            <div class="form-group">
+              <span class="form-label">Topics You Care About</span>
+              <div class="topic-tags" id="topic-tags">
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-pop" name="topics" value="Pop Culture" />
+                  <label for="topic-pop">Pop Culture</label>
+                </div>
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-tech" name="topics" value="Tech" />
+                  <label for="topic-tech">Tech</label>
+                </div>
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-gaming" name="topics" value="Gaming" />
+                  <label for="topic-gaming">Gaming</label>
+                </div>
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-politics" name="topics" value="Politics" />
+                  <label for="topic-politics">Politics</label>
+                </div>
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-sports" name="topics" value="Sports" />
+                  <label for="topic-sports">Sports</label>
+                </div>
+                <div class="topic-tag">
+                  <input type="checkbox" id="topic-lifestyle" name="topics" value="Lifestyle" />
+                  <label for="topic-lifestyle">Lifestyle</label>
+                </div>
+              </div>
+              <span id="topics-error" class="form-error" role="alert"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit" id="signup-submit">
+              Reserve My Access →
             </button>
 
-            <div id="form-message" class="form-message"></div>
+            <p class="trust-signal">Zero spam. Unsubscribe anytime. We respect your inbox.</p>
           </form>
         </div>
       </div>
@@ -366,53 +400,36 @@
        ======================================================================== -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="#" class="navbar-brand">
-            <img src="PB_v1.png" alt="Pollboxx logo" class="brand-logo" />
-            Pollboxx
-          </a>
-          <p>
-            Empowering businesses with strategic solutions, innovative technology,
-            and dedicated partnership since 2010.
-          </p>
-          <div class="footer-social">
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-
-        <div>
-          <h3 class="footer-heading">Quick Links</h3>
-          <ul class="footer-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="footer-heading">Services</h3>
-          <ul class="footer-links">
-            <li><a href="#features">Consulting</a></li>
-            <li><a href="#features">Digital Solutions</a></li>
-            <li><a href="#features">Analytics</a></li>
-            <li><a href="#features">Partnerships</a></li>
-          </ul>
-        </div>
+      <div class="footer-social">
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2026 Meridian. All rights reserved.</p>
-        <p>
-          <a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a>
-        </p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
       </div>
+
+      <p class="footer-copy">&copy; 2026 Pollboxx. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <div class="modal-icon" aria-hidden="true">🎉</div>
+      <h3 id="modal-title">You're In the Circle!</h3>
+      <p>Welcome, Founding Member. We'll hit your inbox with early access details before anyone else. Now spread the word — the narrative needs your people.</p>
+      <div class="modal-share">
+        <a href="#" aria-label="Share on X" id="share-x"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="Share on TikTok" id="share-tiktok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Share on Instagram" id="share-instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <button class="btn btn-primary" id="modal-close">Got It →</button>
+    </div>
+  </div>
 
   <!-- JavaScript -->
   <script src="main.js"></script>
