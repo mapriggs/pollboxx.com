@@ -1,41 +1,58 @@
 /**
- * Business Landing Page — Vanilla JavaScript
- * Handles navigation, scroll effects, form validation, and submission.
+ * Pollboxx Landing Page — Vanilla JavaScript
+ * Navigation, scroll effects, carousel, form validation, and submission.
  */
 
 (function () {
   "use strict";
 
-  /* --------------------------------------------------------------------------
-     DOM References
-     -------------------------------------------------------------------------- */
+  const FOUNDING_SPOTS = { claimed: 753, total: 1000 };
+  const FORMSPREE_URL = "https://formspree.io/f/xnjdywqw";
 
   const navbar = document.getElementById("navbar");
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobile-menu");
   const mobileOverlay = document.getElementById("mobile-overlay");
   const mobileNavLinks = document.querySelectorAll(".mobile-nav-links a, .nav-links a");
-  const contactForm = document.getElementById("contact-form");
+  const heroForm = document.getElementById("hero-form");
+  const heroEmail = document.getElementById("hero-email");
+  const heroEmailError = document.getElementById("hero-email-error");
+  const signupForm = document.getElementById("signup-form");
+  const successModal = document.getElementById("success-modal");
+  const modalClose = document.getElementById("modal-close");
+  const carouselTrack = document.getElementById("carousel-track");
+  const carouselDots = document.getElementById("carousel-dots");
+  const progressFill = document.getElementById("progress-fill");
   const revealElements = document.querySelectorAll(".reveal");
 
-  /* --------------------------------------------------------------------------
-     Navbar scroll effect
-     -------------------------------------------------------------------------- */
+  /* Progress meter */
+
+  if (progressFill) {
+    const pct = (FOUNDING_SPOTS.claimed / FOUNDING_SPOTS.total) * 100;
+    requestAnimationFrame(function () {
+      progressFill.style.width = pct + "%";
+    });
+  }
+
+  /* Navbar scroll */
 
   function handleNavbarScroll() {
-    if (window.scrollY > 20) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
+    if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 20);
   }
 
   window.addEventListener("scroll", handleNavbarScroll, { passive: true });
   handleNavbarScroll();
 
-  /* --------------------------------------------------------------------------
-     Mobile menu toggle
-     -------------------------------------------------------------------------- */
+  /* Mobile menu */
+
+  function closeMobileMenu() {
+    if (!hamburger) return;
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+    mobileMenu.classList.remove("open");
+    mobileOverlay.classList.remove("open");
+    document.body.style.overflow = "";
+  }
 
   function openMobileMenu() {
     hamburger.classList.add("open");
@@ -45,39 +62,22 @@
     document.body.style.overflow = "hidden";
   }
 
-  function closeMobileMenu() {
-    hamburger.classList.remove("open");
-    hamburger.setAttribute("aria-expanded", "false");
-    mobileMenu.classList.remove("open");
-    mobileOverlay.classList.remove("open");
-    document.body.style.overflow = "";
-  }
-
-  function toggleMobileMenu() {
-    if (mobileMenu.classList.contains("open")) {
-      closeMobileMenu();
-    } else {
-      openMobileMenu();
-    }
-  }
-
   if (hamburger) {
-    hamburger.addEventListener("click", toggleMobileMenu);
+    hamburger.addEventListener("click", function () {
+      mobileMenu.classList.contains("open") ? closeMobileMenu() : openMobileMenu();
+    });
   }
 
-  if (mobileOverlay) {
-    mobileOverlay.addEventListener("click", closeMobileMenu);
-  }
+  if (mobileOverlay) mobileOverlay.addEventListener("click", closeMobileMenu);
 
   document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && mobileMenu.classList.contains("open")) {
+    if (event.key === "Escape") {
       closeMobileMenu();
+      if (successModal && successModal.classList.contains("open")) closeModal();
     }
   });
 
-  /* --------------------------------------------------------------------------
-     Active nav link on scroll
-     -------------------------------------------------------------------------- */
+  /* Active nav link */
 
   const sections = document.querySelectorAll("section[id]");
 
@@ -101,16 +101,11 @@
   }
 
   window.addEventListener("scroll", setActiveNavLink, { passive: true });
-
   mobileNavLinks.forEach(function (link) {
-    link.addEventListener("click", function () {
-      closeMobileMenu();
-    });
+    link.addEventListener("click", closeMobileMenu);
   });
 
-  /* --------------------------------------------------------------------------
-     Scroll reveal animation
-     -------------------------------------------------------------------------- */
+  /* Scroll reveal */
 
   if ("IntersectionObserver" in window && revealElements.length) {
     const revealObserver = new IntersectionObserver(
@@ -124,198 +119,261 @@
       },
       { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
     );
-
-    revealElements.forEach(function (el) {
-      revealObserver.observe(el);
-    });
+    revealElements.forEach(function (el) { revealObserver.observe(el); });
   } else {
-    revealElements.forEach(function (el) {
-      el.classList.add("visible");
-    });
+    revealElements.forEach(function (el) { el.classList.add("visible"); });
   }
 
-  /* --------------------------------------------------------------------------
-     Contact form validation & submission
-     -------------------------------------------------------------------------- */
+  /* Carousel dots */
 
-  const validators = {
-    name: function (value) {
-      if (!value.trim()) return "Full name is required.";
-      if (value.trim().length < 2) return "Name must be at least 2 characters.";
-      return "";
-    },
-    email: function (value) {
-      if (!value.trim()) return "Email address is required.";
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(value.trim())) return "Please enter a valid email address.";
-      return "";
-    },
-    subject: function (value) {
-      if (!value) return "Please select a subject.";
-      return "";
-    },
-    message: function (value) {
-      if (!value.trim()) return "Message is required.";
-      if (value.trim().length < 10) return "Message must be at least 10 characters.";
-      return "";
-    },
-  };
+  if (carouselTrack && carouselDots) {
+    const slides = carouselTrack.querySelectorAll(".screenshot-slide");
 
-  function showFieldError(fieldName, message) {
-    const input = document.getElementById(fieldName);
-    const errorEl = document.getElementById(fieldName + "-error");
+    slides.forEach(function (_, i) {
+      const dot = document.createElement("button");
+      dot.className = "carousel-dot" + (i === 0 ? " active" : "");
+      dot.setAttribute("aria-label", "Go to screenshot " + (i + 1));
+      dot.addEventListener("click", function () {
+        slides[i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      });
+      carouselDots.appendChild(dot);
+    });
 
+    carouselTrack.addEventListener("scroll", function () {
+      const trackRect = carouselTrack.getBoundingClientRect();
+      const trackCenter = trackRect.left + trackRect.width / 2;
+      let closest = 0;
+      let minDist = Infinity;
+
+      slides.forEach(function (slide, i) {
+        const rect = slide.getBoundingClientRect();
+        const center = rect.left + rect.width / 2;
+        const dist = Math.abs(center - trackCenter);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+
+      carouselDots.querySelectorAll(".carousel-dot").forEach(function (dot, i) {
+        dot.classList.toggle("active", i === closest);
+      });
+    }, { passive: true });
+  }
+
+  /* Validation helpers */
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+  }
+
+  function showError(inputId, errorId, message) {
+    const input = document.getElementById(inputId);
+    const error = document.getElementById(errorId);
     if (input) input.classList.add("error");
-    if (errorEl) {
-      errorEl.textContent = message;
-      errorEl.classList.add("visible");
-    }
+    if (error) { error.textContent = message; error.classList.add("visible"); }
   }
 
-  function clearFieldError(fieldName) {
-    const input = document.getElementById(fieldName);
-    const errorEl = document.getElementById(fieldName + "-error");
-
+  function clearError(inputId, errorId) {
+    const input = document.getElementById(inputId);
+    const error = document.getElementById(errorId);
     if (input) input.classList.remove("error");
-    if (errorEl) {
-      errorEl.textContent = "";
-      errorEl.classList.remove("visible");
-    }
+    if (error) { error.textContent = ""; error.classList.remove("visible"); }
   }
 
-  function validateForm(formData) {
-    let isValid = true;
+  function showErrorEl(errorId, message) {
+    const error = document.getElementById(errorId);
+    if (error) { error.textContent = message; error.classList.add("visible"); }
+  }
 
-    Object.keys(validators).forEach(function (fieldName) {
-      const error = validators[fieldName](formData.get(fieldName) || "");
-      if (error) {
-        showFieldError(fieldName, error);
-        isValid = false;
-      } else {
-        clearFieldError(fieldName);
-      }
+  function clearErrorEl(errorId) {
+    const error = document.getElementById(errorId);
+    if (error) { error.textContent = ""; error.classList.remove("visible"); }
+  }
+
+  /* Modal */
+
+  function openModal() {
+    if (!successModal) return;
+    successModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    if (modalClose) modalClose.focus();
+  }
+
+  function closeModal() {
+    if (!successModal) return;
+    successModal.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  if (modalClose) modalClose.addEventListener("click", closeModal);
+  if (successModal) {
+    successModal.addEventListener("click", function (e) {
+      if (e.target === successModal) closeModal();
     });
-
-    return isValid;
   }
 
-  function showFormMessage(type, text) {
-    const messageEl = document.getElementById("form-message");
-    if (!messageEl) return;
+  const shareText = encodeURIComponent("Just joined the Pollboxx Founding Members Circle — vote, debate, decide. Grab your spot:");
+  const shareUrl = encodeURIComponent(window.location.href);
 
-    messageEl.className = "form-message " + type;
-    messageEl.textContent = text;
-    messageEl.setAttribute("role", "alert");
-  }
+  const shareX = document.getElementById("share-x");
+  if (shareX) shareX.href = "https://twitter.com/intent/tweet?text=" + shareText + "&url=" + shareUrl;
 
-  function hideFormMessage() {
-    const messageEl = document.getElementById("form-message");
-    if (!messageEl) return;
+  /* Form submission */
 
-    messageEl.className = "form-message";
-    messageEl.textContent = "";
-    messageEl.removeAttribute("role");
-  }
+  function submitToFormspree(data, submitBtn, originalHTML) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
 
-  if (contactForm) {
-    Object.keys(validators).forEach(function (fieldName) {
-      const input = document.getElementById(fieldName);
-      if (!input) return;
-
-      input.addEventListener("blur", function () {
-        const error = validators[fieldName](input.value);
-        if (error) {
-          showFieldError(fieldName, error);
-        } else {
-          clearFieldError(fieldName);
-        }
-      });
-
-      input.addEventListener("input", function () {
-        if (input.classList.contains("error")) {
-          const error = validators[fieldName](input.value);
-          if (!error) clearFieldError(fieldName);
-        }
-      });
-    });
-
-    contactForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      hideFormMessage();
-
-      const formData = new FormData(contactForm);
-
-      if (!validateForm(formData)) {
-        showFormMessage("error", "Please correct the errors above before submitting.");
-        return;
-      }
-
-      const submitBtn = contactForm.querySelector('[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-
-      submitBtn.disabled = true;
-      submitBtn.innerHTML =
-        '<svg class="animate-spin inline w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Sending...';
-
-      const payload = {
-        name: formData.get("name").trim(),
-        email: formData.get("email").trim(),
-        subject: formData.get("subject"),
-        message: formData.get("message").trim(),
-        _subject: "New inquiry from Meridian website",
-        _replyto: formData.get("email").trim(),
-      };
-
-      fetch(contactForm.action, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
+    return fetch(FORMSPREE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("Submit failed");
+        openModal();
+        return true;
       })
-        .then(function (response) {
-          if (response.ok) {
-            showFormMessage(
-              "success",
-              "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours."
-            );
-            contactForm.reset();
-            Object.keys(validators).forEach(clearFieldError);
-          } else {
-            throw new Error("Submission failed");
-          }
-        })
-        .catch(function () {
-          showFormMessage(
-            "error",
-            "Something went wrong. Please try again or email us directly at hello@meridian.co."
-          );
-        })
-        .finally(function () {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-        });
+      .catch(function () {
+        alert("Something went wrong. Please try again or email us at hello@pollboxx.com.");
+        return false;
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+      });
+  }
+
+  /* Hero quick-capture */
+
+  if (heroForm) {
+    function showHeroError(message) {
+      heroEmail.classList.add("error");
+      if (heroEmailError) {
+        heroEmailError.textContent = message;
+        heroEmailError.classList.add("visible");
+      }
+    }
+
+    function clearHeroError() {
+      heroEmail.classList.remove("error");
+      if (heroEmailError) {
+        heroEmailError.textContent = "";
+        heroEmailError.classList.remove("visible");
+      }
+    }
+
+    heroForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = heroEmail.value.trim();
+
+      if (!email) { showHeroError("Email is required."); return; }
+      if (!isValidEmail(email)) { showHeroError("Please enter a valid email address."); return; }
+
+      clearHeroError();
+      const btn = heroForm.querySelector('[type="submit"]');
+      const original = btn.innerHTML;
+
+      submitToFormspree({
+        email: email,
+        source: "hero_quick_capture",
+        _subject: "Pollboxx Founding Circle — Hero Sign-Up",
+        _replyto: email,
+      }, btn, original).then(function (ok) {
+        if (ok) {
+          heroForm.reset();
+          document.getElementById("signup").scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    });
+
+    heroEmail.addEventListener("input", function () {
+      const val = heroEmail.value.trim();
+      if (!val) { clearHeroError(); return; }
+      if (isValidEmail(val)) clearHeroError();
+      else showHeroError("Please enter a valid email address.");
     });
   }
 
-  /* --------------------------------------------------------------------------
-     Smooth scroll for anchor links (fallback for browsers without CSS smooth)
-     -------------------------------------------------------------------------- */
+  /* Full signup form */
+
+  if (signupForm) {
+    signupForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      let valid = true;
+
+      const name = document.getElementById("fullname").value.trim();
+      const email = document.getElementById("signup-email").value.trim();
+      const platform = signupForm.querySelector('input[name="platform"]:checked');
+      const topics = signupForm.querySelectorAll('input[name="topics"]:checked');
+
+      clearError("fullname", "fullname-error");
+      clearError("signup-email", "signup-email-error");
+      clearErrorEl("platform-error");
+      clearErrorEl("topics-error");
+
+      if (!name || name.length < 2) {
+        showError("fullname", "fullname-error", "Please enter your full name.");
+        valid = false;
+      }
+
+      if (!email) {
+        showError("signup-email", "signup-email-error", "Email is required.");
+        valid = false;
+      } else if (!isValidEmail(email)) {
+        showError("signup-email", "signup-email-error", "Please enter a valid email address.");
+        valid = false;
+      }
+
+      if (!platform) {
+        showErrorEl("platform-error", "Please select a platform preference.");
+        valid = false;
+      }
+
+      if (topics.length === 0) {
+        showErrorEl("topics-error", "Select at least one topic you care about.");
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      const topicsList = Array.from(topics).map(function (t) { return t.value; });
+      const submitBtn = document.getElementById("signup-submit");
+      const original = submitBtn.innerHTML;
+
+      submitToFormspree({
+        name: name,
+        email: email,
+        platform: platform.value,
+        topics: topicsList.join(", "),
+        source: "founding_circle_signup",
+        _subject: "Pollboxx Founding Circle — Full Sign-Up",
+        _replyto: email,
+      }, submitBtn, original).then(function (ok) {
+        if (ok) signupForm.reset();
+      });
+    });
+
+    document.getElementById("signup-email").addEventListener("input", function () {
+      const val = this.value.trim();
+      if (!val) { clearError("signup-email", "signup-email-error"); return; }
+      if (isValidEmail(val)) clearError("signup-email", "signup-email-error");
+      else showError("signup-email", "signup-email-error", "Please enter a valid email address.");
+    });
+  }
+
+  /* Smooth scroll */
 
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener("click", function (event) {
       const targetId = this.getAttribute("href");
       if (targetId === "#") return;
-
       const target = document.querySelector(targetId);
       if (!target) return;
-
       event.preventDefault();
       const navHeight = navbar ? navbar.offsetHeight : 0;
-      const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
-
-      window.scrollTo({ top: targetPosition, behavior: "smooth" });
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + window.scrollY - navHeight,
+        behavior: "smooth",
+      });
     });
   });
 })();
