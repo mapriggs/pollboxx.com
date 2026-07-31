@@ -84,15 +84,19 @@
         </p>
 
         <form id="hero-form" class="hero-capture" novalidate>
-          <input
-            type="email"
-            id="hero-email"
-            name="email"
-            placeholder="Enter your email"
-            autocomplete="email"
-            aria-label="Email address for early access"
-            required
-          />
+          <div class="hero-capture-field">
+            <input
+              type="email"
+              id="hero-email"
+              name="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              aria-label="Email address for early access"
+              aria-describedby="hero-email-error"
+              required
+            />
+            <span id="hero-email-error" class="hero-form-error" role="alert"></span>
+          </div>
           <button type="submit" class="btn btn-glow">Get Early Access</button>
         </form>
 
@@ -215,19 +219,39 @@
       </div>
     </section>
 
-    <!-- Features anchor (scroll target from nav) -->
-    <section id="features" class="perks" style="padding-top:3rem;">
+    <!-- Features -->
+    <section id="features" class="features">
       <div class="container">
         <header class="section-header reveal">
           <span class="section-label">Why Pollboxx</span>
           <h2 class="display-lg">Shape the Narrative</h2>
           <p>No echo chambers. No algorithmic manipulation. Just real people, real opinions, real impact.</p>
         </header>
+
+        <div class="features-grid">
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true"><i class="fas fa-square-poll-vertical"></i></div>
+            <h3>Live Social Polls</h3>
+            <p>Cast your vote on the topics that matter — from pop culture hot takes to breaking news debates.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+            <h3>Real-Time Trends</h3>
+            <p>See where you stand against your generation, your city, and the world — updated live as votes roll in.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true"><i class="fas fa-comments"></i></div>
+            <h3>Debate Threads</h3>
+            <p>Jump into unfiltered conversations. Make your case, challenge ideas, and find your people.</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- Perks -->
-    <section id="perks" class="perks" style="padding-top:0;">
+    <section id="perks" class="perks">
       <div class="container">
         <header class="section-header reveal">
           <span class="section-label">Exclusive Access</span>

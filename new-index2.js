@@ -18,6 +18,7 @@
   const mobileNav = document.getElementById("mobile-nav");
   const heroForm = document.getElementById("hero-form");
   const heroEmail = document.getElementById("hero-email");
+  const heroEmailError = document.getElementById("hero-email-error");
   const signupForm = document.getElementById("signup-form");
   const successModal = document.getElementById("success-modal");
   const modalClose = document.getElementById("modal-close");
@@ -256,20 +257,36 @@
 
   /* Hero quick-capture form */
   if (heroForm) {
+    function showHeroError(message) {
+      heroEmail.classList.add("error");
+      if (heroEmailError) {
+        heroEmailError.textContent = message;
+        heroEmailError.classList.add("visible");
+      }
+    }
+
+    function clearHeroError() {
+      heroEmail.classList.remove("error");
+      if (heroEmailError) {
+        heroEmailError.textContent = "";
+        heroEmailError.classList.remove("visible");
+      }
+    }
+
     heroForm.addEventListener("submit", function (e) {
       e.preventDefault();
       const email = heroEmail.value.trim();
 
       if (!email) {
-        heroEmail.classList.add("error");
+        showHeroError("Email is required.");
         return;
       }
       if (!isValidEmail(email)) {
-        heroEmail.classList.add("error");
+        showHeroError("Please enter a valid email address.");
         return;
       }
 
-      heroEmail.classList.remove("error");
+      clearHeroError();
       const btn = heroForm.querySelector('[type="submit"]');
       const original = btn.innerHTML;
 
@@ -279,14 +296,24 @@
         _subject: "Pollboxx Founding Circle — Hero Sign-Up",
         _replyto: email,
       }, btn, original).then(function (ok) {
-        if (ok) heroForm.reset();
+        if (ok) {
+          heroForm.reset();
+          document.getElementById("signup").scrollIntoView({ behavior: "smooth" });
+        }
       });
-
-      document.getElementById("signup").scrollIntoView({ behavior: "smooth" });
     });
 
     heroEmail.addEventListener("input", function () {
-      if (isValidEmail(heroEmail.value)) heroEmail.classList.remove("error");
+      const val = heroEmail.value.trim();
+      if (!val) {
+        clearHeroError();
+        return;
+      }
+      if (isValidEmail(val)) {
+        clearHeroError();
+      } else {
+        showHeroError("Please enter a valid email address.");
+      }
     });
   }
 
@@ -346,6 +373,19 @@
       }, submitBtn, original).then(function (ok) {
         if (ok) signupForm.reset();
       });
+    });
+
+    document.getElementById("signup-email").addEventListener("input", function () {
+      const val = this.value.trim();
+      if (!val) {
+        clearError("signup-email", "signup-email-error");
+        return;
+      }
+      if (isValidEmail(val)) {
+        clearError("signup-email", "signup-email-error");
+      } else {
+        showError("signup-email", "signup-email-error", "Please enter a valid email address.");
+      }
     });
 
     document.getElementById("signup-email").addEventListener("blur", function () {
