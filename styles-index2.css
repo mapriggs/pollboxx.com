@@ -178,6 +178,8 @@ button, input, select, textarea { font-family: inherit; }
   height: var(--nav-height);
 }
 
+/* The header is transparent over the dark hero until it gains .scrolled,
+   so its default colors are the light-on-dark set. */
 .brand {
   display: flex;
   align-items: center;
@@ -185,8 +187,11 @@ button, input, select, textarea { font-family: inherit; }
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: #FFFFFF;
+  transition: color var(--transition);
 }
+
+.header.scrolled .brand { color: var(--color-primary); }
 
 .brand-logo {
   height: 2.25rem;
@@ -206,11 +211,14 @@ button, input, select, textarea { font-family: inherit; }
 .nav-links a {
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.82);
   transition: color var(--transition);
 }
 
-.nav-links a:hover { color: var(--color-primary); }
+.nav-links a:hover { color: var(--color-secondary); }
+
+.header.scrolled .nav-links a { color: var(--color-text-muted); }
+.header.scrolled .nav-links a:hover { color: var(--color-primary); }
 
 .nav-cta { display: none; }
 
@@ -220,19 +228,24 @@ button, input, select, textarea { font-family: inherit; }
   gap: 5px;
   padding: 0.5rem;
   background: none;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: var(--radius-sm);
   cursor: pointer;
+  transition: border-color var(--transition);
 }
+
+.header.scrolled .hamburger { border-color: var(--color-border); }
 
 .hamburger span {
   display: block;
   width: 1.25rem;
   height: 2px;
-  background: var(--color-primary);
+  background: #FFFFFF;
   border-radius: 1px;
-  transition: transform var(--transition), opacity var(--transition);
+  transition: transform var(--transition), opacity var(--transition), background var(--transition);
 }
+
+.header.scrolled .hamburger span { background: var(--color-primary); }
 
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -349,6 +362,7 @@ button, input, select, textarea { font-family: inherit; }
 
 .hero-description {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.85);
   max-width: 40rem;
   margin: 0 auto 2.5rem;
   line-height: 1.7;
