@@ -5,10 +5,10 @@ the markup, not by filename:
 
 | Order | File | Caption on the page |
 |-------|------|---------------------|
-| 1 | `04-screenshot.jpg` | Pick Your Side |
-| 2 | `02-screenshot.jpg` | Lock In Your Vote |
-| 3 | `03-screenshot.jpg` | Vote Confirmed |
-| 4 | `05-screenshot.jpg` | Your Daily Home |
+| 1 | `05-screenshot.jpg` | Your Daily Home |
+| 2 | `04-screenshot.jpg` | Pick Your Side |
+| 3 | `02-screenshot.jpg` | Lock In Your Vote |
+| 4 | `03-screenshot.jpg` | Vote Confirmed |
 | 5 | `06-screenshot.jpg` | Explore Past Polls |
 | 6 | `07-screenshot.jpg` | Full Results Breakdown |
 
