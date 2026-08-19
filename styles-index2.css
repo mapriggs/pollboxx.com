@@ -541,10 +541,11 @@ button, input, select, textarea { font-family: inherit; }
 }
 
 .phone-screen {
-  background: var(--color-surface);
+  background: #0D0D0D;
   border-radius: 2rem;
   overflow: hidden;
-  aspect-ratio: 9 / 19;
+  /* Matches the captures in screenshots/ so nothing gets cropped. */
+  aspect-ratio: 738 / 1599;
   display: flex;
   flex-direction: column;
 }
@@ -553,7 +554,6 @@ button, input, select, textarea { font-family: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: var(--color-surface);
 }
 
 .phone-caption {
@@ -565,21 +565,15 @@ button, input, select, textarea { font-family: inherit; }
 }
 
 @media (min-width: 1024px) {
+  /* The track stays scrollable at every width — the seven frames are wider
+     than the viewport. "safe" keeps the first frame reachable when they
+     overflow, and still centers them if they ever fit. */
   .carousel-track {
-    justify-content: center;
-    overflow-x: visible;
+    justify-content: safe center;
   }
 
   .phone-mockup {
     flex: 0 0 260px;
-  }
-
-  .phone-mockup:nth-child(2) .phone-frame {
-    transform: scale(1.06) translateY(-12px);
-  }
-
-  .phone-mockup:nth-child(2):hover .phone-frame {
-    transform: scale(1.06) translateY(-20px) rotateX(2deg);
   }
 }
 

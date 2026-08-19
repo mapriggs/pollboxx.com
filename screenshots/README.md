@@ -1,16 +1,21 @@
 # App Screenshots
 
-`index.html` loads its "See It In Action" carousel from this folder:
+The "See It In Action" carousel in `index.html` shows every image in this folder, in
+filename order:
 
-| File | Description |
-|------|-------------|
-| `cast-your-vote.png` | Live Poll & Voting screen |
-| `see-where-you-stand.png` | Real-Time Trend Analytics screen |
-| `join-the-discussion.png` | Social Comment & Debate thread |
+| File | Caption on the page |
+|------|---------------------|
+| `01-screenshot.jpg` | Question of the Day |
+| `02-screenshot.jpg` | Lock In Your Vote |
+| `03-screenshot.jpg` | Vote Confirmed |
+| `04-screenshot.jpg` | Pick Your Side |
+| `05-screenshot.jpg` | Your Daily Home |
+| `06-screenshot.jpg` | Explore Past Polls |
+| `07-screenshot.jpg` | Full Results Breakdown |
 
-The files currently checked in are stand-ins rendered from the old CSS mockups, so the
-carousel looks the same as before. Replace them with real app captures using the same
-filenames and no markup changes are needed.
+All seven are 738 × 1599 device captures. `.phone-screen` in `styles-index2.css` uses that
+same aspect ratio so the frames show the full screenshot without cropping — if you swap in
+images with a different shape, update the `aspect-ratio` there to match.
 
-Recommended size: **1170 × 2532 px** (or similar 9:19 phone aspect ratio). PNG or JPG both
-work — update the file extensions in `index.html` and `new-index.html` if you switch.
+Adding or removing a slide means editing the carousel markup in `index.html`; the
+navigation dots are generated from the number of slides, so they keep themselves in sync.
