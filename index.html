@@ -118,7 +118,11 @@
       </div>
 
       <div class="carousel-wrapper">
-        <div class="carousel-track" id="carousel-track" role="region" aria-label="App screenshot carousel">
+        <div class="carousel-viewport">
+          <button type="button" class="carousel-arrow carousel-arrow-prev" id="carousel-prev" aria-label="Previous screenshot">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <div class="carousel-track" id="carousel-track" role="region" aria-label="App screenshot carousel" tabindex="0">
           <div class="phone-mockup reveal">
             <div class="phone-frame">
               <div class="phone-notch"></div>
@@ -244,6 +248,10 @@
             </div>
             <p class="phone-caption">Full Results Breakdown</p>
           </div>
+          </div>
+          <button type="button" class="carousel-arrow carousel-arrow-next" id="carousel-next" aria-label="Next screenshot">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
         </div>
 
         <div class="carousel-nav" id="carousel-dots" aria-label="Carousel navigation"></div>
