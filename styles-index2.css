@@ -6,6 +6,10 @@
 :root {
   --color-primary: #203864;
   --color-secondary: #DAA520;
+  /* Gold light enough to clear 4.5:1 as text on the dark hero. */
+  --color-secondary-bright: #F5CE6B;
+  /* Navy dark enough to clear 4.5:1 as text on the gold buttons. */
+  --color-on-secondary: #16253F;
   --color-background: #FFFFFF;
   --color-surface: #F5F7FA;
   --color-text: #1A2332;
@@ -124,7 +128,7 @@ button, input, select, textarea { font-family: inherit; }
 
 .btn-glow {
   background: linear-gradient(135deg, var(--color-secondary), #C4941A);
-  color: var(--color-primary);
+  color: var(--color-on-secondary);
   box-shadow: 0 4px 20px var(--color-glow);
 }
 
@@ -342,7 +346,7 @@ button, input, select, textarea { font-family: inherit; }
   border-radius: var(--radius-pill);
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--color-secondary);
+  color: var(--color-secondary-bright);
   margin-bottom: 1.75rem;
   box-shadow: 0 0 24px rgba(218, 165, 32, 0.2);
   animation: pulse-glow 3s ease-in-out infinite;
@@ -397,7 +401,7 @@ button, input, select, textarea { font-family: inherit; }
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.hero-capture input::placeholder { color: rgba(255, 255, 255, 0.45); }
+.hero-capture input::placeholder { color: rgba(255, 255, 255, 0.7); }
 
 .hero-capture input:focus {
   border-color: var(--color-secondary);
