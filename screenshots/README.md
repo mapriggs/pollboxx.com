@@ -18,4 +18,5 @@ same aspect ratio so the frames show the full screenshot without cropping — if
 images with a different shape, update the `aspect-ratio` there to match.
 
 Adding, removing, or reordering a slide means editing the carousel markup in `index.html`;
-the navigation dots are generated from the number of slides, so they keep themselves in sync.
+the navigation dots and left/right arrows are generated from the number of slides, so they
+keep themselves in sync. Phone frames are sized at 70% of the original mockup width.

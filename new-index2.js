@@ -24,6 +24,8 @@
   const modalClose = document.getElementById("modal-close");
   const carouselTrack = document.getElementById("carousel-track");
   const carouselDots = document.getElementById("carousel-dots");
+  const carouselPrev = document.getElementById("carousel-prev");
+  const carouselNext = document.getElementById("carousel-next");
   const progressFill = document.getElementById("progress-fill");
   const revealElements = document.querySelectorAll(".reveal");
 
@@ -122,39 +124,80 @@
   }
 
   /* --------------------------------------------------------------------------
-     Carousel dots
+     Carousel
      -------------------------------------------------------------------------- */
 
   if (carouselTrack && carouselDots) {
-    const slides = carouselTrack.querySelectorAll(".phone-mockup");
+    const slides = Array.prototype.slice.call(carouselTrack.querySelectorAll(".phone-mockup"));
+
+    /* Distance from one slide to the next, gap included. */
+    function slideStep() {
+      if (slides.length > 1) return slides[1].offsetLeft - slides[0].offsetLeft;
+      return slides.length ? slides[0].offsetWidth : 0;
+    }
+
+    function currentIndex() {
+      const step = slideStep();
+      if (!step) return 0;
+      const index = Math.round(carouselTrack.scrollLeft / step);
+      return Math.max(0, Math.min(slides.length - 1, index));
+    }
+
+    function goToSlide(index) {
+      const next = Math.max(0, Math.min(slides.length - 1, index));
+      carouselTrack.scrollTo({ left: next * slideStep(), behavior: "smooth" });
+    }
+
+    function syncCarouselControls() {
+      const index = currentIndex();
+      const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+
+      carouselDots.querySelectorAll(".carousel-dot").forEach(function (dot, i) {
+        dot.classList.toggle("active", i === index);
+      });
+      if (carouselPrev) {
+        carouselPrev.disabled = carouselTrack.scrollLeft <= 1;
+      }
+      if (carouselNext) {
+        carouselNext.disabled = carouselTrack.scrollLeft >= maxScroll - 1;
+      }
+    }
 
     slides.forEach(function (_, i) {
       const dot = document.createElement("button");
       dot.className = "carousel-dot" + (i === 0 ? " active" : "");
       dot.setAttribute("aria-label", "Go to screenshot " + (i + 1));
       dot.addEventListener("click", function () {
-        slides[i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        goToSlide(i);
       });
       carouselDots.appendChild(dot);
     });
 
-    carouselTrack.addEventListener("scroll", function () {
-      const trackRect = carouselTrack.getBoundingClientRect();
-      const trackCenter = trackRect.left + trackRect.width / 2;
-      let closest = 0;
-      let minDist = Infinity;
-
-      slides.forEach(function (slide, i) {
-        const rect = slide.getBoundingClientRect();
-        const center = rect.left + rect.width / 2;
-        const dist = Math.abs(center - trackCenter);
-        if (dist < minDist) { minDist = dist; closest = i; }
+    if (carouselPrev) {
+      carouselPrev.addEventListener("click", function () {
+        goToSlide(currentIndex() - 1);
       });
+    }
 
-      carouselDots.querySelectorAll(".carousel-dot").forEach(function (dot, i) {
-        dot.classList.toggle("active", i === closest);
+    if (carouselNext) {
+      carouselNext.addEventListener("click", function () {
+        goToSlide(currentIndex() + 1);
       });
-    }, { passive: true });
+    }
+
+    carouselTrack.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToSlide(currentIndex() - 1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToSlide(currentIndex() + 1);
+      }
+    });
+
+    carouselTrack.addEventListener("scroll", syncCarouselControls, { passive: true });
+    window.addEventListener("resize", syncCarouselControls);
+    syncCarouselControls();
   }
 
   /* --------------------------------------------------------------------------
