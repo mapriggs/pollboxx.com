@@ -493,6 +493,10 @@ button, input, select, textarea { font-family: inherit; }
   position: relative;
   display: flex;
   align-items: center;
+  /* Narrower than the seven frames laid end to end, so the track always has
+     somewhere to scroll and the arrows are never inert. */
+  max-width: 60rem;
+  margin: 0 auto;
 }
 
 .carousel-track {
@@ -582,7 +586,7 @@ button, input, select, textarea { font-family: inherit; }
 
 .phone-mockup {
   flex: 0 0 min(196px, 55vw);
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   perspective: 800px;
 }
 

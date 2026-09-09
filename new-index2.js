@@ -128,39 +128,38 @@
      -------------------------------------------------------------------------- */
 
   if (carouselTrack && carouselDots) {
-    const slides = carouselTrack.querySelectorAll(".phone-mockup");
+    const slides = Array.prototype.slice.call(carouselTrack.querySelectorAll(".phone-mockup"));
 
-    function closestSlideIndex() {
-      const trackRect = carouselTrack.getBoundingClientRect();
-      const trackCenter = trackRect.left + trackRect.width / 2;
-      let closest = 0;
-      let minDist = Infinity;
+    /* Distance from one slide to the next, gap included. */
+    function slideStep() {
+      if (slides.length > 1) return slides[1].offsetLeft - slides[0].offsetLeft;
+      return slides.length ? slides[0].offsetWidth : 0;
+    }
 
-      slides.forEach(function (slide, i) {
-        const rect = slide.getBoundingClientRect();
-        const center = rect.left + rect.width / 2;
-        const dist = Math.abs(center - trackCenter);
-        if (dist < minDist) { minDist = dist; closest = i; }
-      });
-
-      return closest;
+    function currentIndex() {
+      const step = slideStep();
+      if (!step) return 0;
+      const index = Math.round(carouselTrack.scrollLeft / step);
+      return Math.max(0, Math.min(slides.length - 1, index));
     }
 
     function goToSlide(index) {
       const next = Math.max(0, Math.min(slides.length - 1, index));
-      slides[next].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-      syncCarouselControls(next);
+      carouselTrack.scrollTo({ left: next * slideStep(), behavior: "smooth" });
     }
 
-    function syncCarouselControls(index) {
+    function syncCarouselControls() {
+      const index = currentIndex();
+      const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+
       carouselDots.querySelectorAll(".carousel-dot").forEach(function (dot, i) {
         dot.classList.toggle("active", i === index);
       });
       if (carouselPrev) {
-        carouselPrev.disabled = index === 0;
+        carouselPrev.disabled = carouselTrack.scrollLeft <= 1;
       }
       if (carouselNext) {
-        carouselNext.disabled = index === slides.length - 1;
+        carouselNext.disabled = carouselTrack.scrollLeft >= maxScroll - 1;
       }
     }
 
@@ -176,31 +175,29 @@
 
     if (carouselPrev) {
       carouselPrev.addEventListener("click", function () {
-        goToSlide(closestSlideIndex() - 1);
+        goToSlide(currentIndex() - 1);
       });
     }
 
     if (carouselNext) {
       carouselNext.addEventListener("click", function () {
-        goToSlide(closestSlideIndex() + 1);
+        goToSlide(currentIndex() + 1);
       });
     }
 
     carouselTrack.addEventListener("keydown", function (e) {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        goToSlide(closestSlideIndex() - 1);
+        goToSlide(currentIndex() - 1);
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        goToSlide(closestSlideIndex() + 1);
+        goToSlide(currentIndex() + 1);
       }
     });
 
-    carouselTrack.addEventListener("scroll", function () {
-      syncCarouselControls(closestSlideIndex());
-    }, { passive: true });
-
-    syncCarouselControls(0);
+    carouselTrack.addEventListener("scroll", syncCarouselControls, { passive: true });
+    window.addEventListener("resize", syncCarouselControls);
+    syncCarouselControls();
   }
 
   /* --------------------------------------------------------------------------
