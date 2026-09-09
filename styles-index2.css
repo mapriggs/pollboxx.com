@@ -499,9 +499,6 @@ button, input, select, textarea { font-family: inherit; }
   position: relative;
   display: flex;
   align-items: center;
-  /* Narrower than the seven frames laid end to end, so the track always has
-     somewhere to scroll and the arrows are never inert. */
-  max-width: 60rem;
   margin: 0 auto;
 }
 
@@ -509,7 +506,6 @@ button, input, select, textarea { font-family: inherit; }
   display: flex;
   gap: 1.5rem;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   padding: 2rem 0 2.25rem;
   -webkit-overflow-scrolling: touch;
@@ -592,7 +588,6 @@ button, input, select, textarea { font-family: inherit; }
 
 .phone-mockup {
   flex: 0 0 min(196px, 55vw);
-  scroll-snap-align: start;
   perspective: 800px;
 }
 
@@ -641,6 +636,22 @@ button, input, select, textarea { font-family: inherit; }
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--color-primary);
+}
+
+@media (min-width: 768px) {
+  /* The carousel occupies the middle 60% of the page, leaving 20% of white
+     space on each side. The wrapper drops its padding so that 20% is measured
+     against the full page width. The cap keeps at least one frame off the end
+     of the track on very wide screens, so the arrows always have somewhere to
+     scroll. */
+  .carousel-wrapper {
+    padding: 0;
+  }
+
+  .carousel-viewport {
+    width: 60%;
+    max-width: 94rem;
+  }
 }
 
 @media (min-width: 1024px) {

@@ -136,11 +136,24 @@
       return slides.length ? slides[0].offsetWidth : 0;
     }
 
-    function currentIndex() {
+    function maxScroll() {
+      return carouselTrack.scrollWidth - carouselTrack.clientWidth;
+    }
+
+    /* Which slide sits against the left edge of the track. */
+    function scrollIndex() {
       const step = slideStep();
       if (!step) return 0;
       const index = Math.round(carouselTrack.scrollLeft / step);
       return Math.max(0, Math.min(slides.length - 1, index));
+    }
+
+    /* Which slide the dots should point at. The track runs out of scrolling
+       before the trailing frames reach the left edge, so the end of the range
+       stands in for the last slide. */
+    function currentIndex() {
+      if (carouselTrack.scrollLeft >= maxScroll() - 1) return slides.length - 1;
+      return scrollIndex();
     }
 
     function goToSlide(index) {
@@ -150,7 +163,6 @@
 
     function syncCarouselControls() {
       const index = currentIndex();
-      const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
 
       carouselDots.querySelectorAll(".carousel-dot").forEach(function (dot, i) {
         dot.classList.toggle("active", i === index);
@@ -159,7 +171,7 @@
         carouselPrev.disabled = carouselTrack.scrollLeft <= 1;
       }
       if (carouselNext) {
-        carouselNext.disabled = carouselTrack.scrollLeft >= maxScroll - 1;
+        carouselNext.disabled = carouselTrack.scrollLeft >= maxScroll() - 1;
       }
     }
 
@@ -175,23 +187,23 @@
 
     if (carouselPrev) {
       carouselPrev.addEventListener("click", function () {
-        goToSlide(currentIndex() - 1);
+        goToSlide(scrollIndex() - 1);
       });
     }
 
     if (carouselNext) {
       carouselNext.addEventListener("click", function () {
-        goToSlide(currentIndex() + 1);
+        goToSlide(scrollIndex() + 1);
       });
     }
 
     carouselTrack.addEventListener("keydown", function (e) {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        goToSlide(currentIndex() - 1);
+        goToSlide(scrollIndex() - 1);
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        goToSlide(currentIndex() + 1);
+        goToSlide(scrollIndex() + 1);
       }
     });
 
