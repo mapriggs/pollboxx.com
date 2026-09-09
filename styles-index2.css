@@ -559,7 +559,7 @@ button, input, select, textarea { font-family: inherit; }
   border-radius: 2rem;
   overflow: hidden;
   /* Matches the captures in screenshots/ so nothing gets cropped. */
-  aspect-ratio: 738 / 1599;
+  aspect-ratio: 1206 / 2622;
   display: flex;
   flex-direction: column;
 }
